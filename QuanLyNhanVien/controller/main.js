@@ -78,7 +78,8 @@ get('#btnThemNV').onclick = function () {
         DSNV.add(nhanVien);                 // B2: Thêm nhân viên vào mảng
         renderUI();                         // B3: Hiển thị UI
         setLocalStorage();                  // B4: Lưu dữ liệu vào LocalStorage
-    };
+        get('#btnThemNV').setAttribute('data-dismiss','modal');
+    }
 };
 
 // Hàm hiển thị UI
@@ -175,6 +176,7 @@ get('#btnCapNhat').onclick = function () {
         DSNV.update(nhanVien);
         renderUI();
         setLocalStorage();
+        get('#btnCapNhat').setAttribute('data-dismiss','modal');
     }
 };
 
@@ -195,10 +197,12 @@ get('#searchName').addEventListener('keyup', () => {
 });
 
 // Xử lý reset-validate khi popup-modal
-$('#myModal').on('hidden.bs.modal', function () {
+$('#myModal').on('show.bs.modal', function () {
     var arrSpan = getAll('#form-login span.sp-thongbao');
 
     for (var i = 0; i < arrSpan.length; i++) {
         arrSpan[i].style.display = 'none';
     };
+    get('#btnThemNV').removeAttribute('data-dismiss','modal');
+    get('#btnCapNhat').removeAttribute('data-dismiss','modal');
 });
